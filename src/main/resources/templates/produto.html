@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<title>Cardapio</title>
+	<title>Produtos</title>
 	 <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
       
@@ -15,8 +15,8 @@
 <body>
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			  <a class="navbar-brand" href="/test/products">
-			  	<img src="" width=10% height=10%>Gourmet</a>
+			  <a class="navbar-brand" href="/gourmet/home">
+			  	<img src="img/logo.jpg" width=10% height=10%>Gourmet</a>
 			  
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
@@ -36,12 +36,13 @@
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			        	<a class="dropdown-item" href="/gourmet/produto">Lista Produtos</a>
-			          <div class="dropdown-divider"></div>
-			          <a class="dropdown-item" href="/gourmet/new-product">Novo Produto</a>
-			          <a class="dropdown-item" href="/gourmet/edit-product">Dados Produto</a>
-			          <div class="dropdown-divider"></div>
-			          <a class="dropdown-item" href="/gourmet/new-cliente">Novo Cliente</a>
-			          <a class="dropdown-item" href="/gourmet/edit-cliente">Dados Cliente</a>
+			         	<a class="dropdown-item" href="/gourmet/new-product">Novo Produto</a>
+			         	<div class="dropdown-divider"></div>
+			         	<a class="dropdown-item" href="/gourmet/funcionarios">Lista Funcionarios</a>
+			         	<a class="dropdown-item" href="/gourmet/new-funcionario">Novo Funcionario</a>
+			         	<div class="dropdown-divider"></div>
+			         	<a class="dropdown-item" href="/gourmet/clientes">Lista Cliente</a>
+			         	<a class="dropdown-item" href="/gourmet/new-cliente">Novo Cliente</a>
 			        </div>
 			        </li>
 			    </ul>
@@ -66,15 +67,15 @@
 							<td>PREÇO</td>
 						</tr>
 					</thead>
-					<tbody th:each="product : ${product}">
+					<tbody th:each="listProduct : ${listProduct}">
 						<tr>
-							<td><span th:text="${product.id}"></span></td>
-							<td><span th:text="${product.name}"></span></td>
+							<td><span th:text="${listProduct.id}"></span></td>
+							<td><a th:href="${(#mvc.url('PC#showProduct').arg(0, listProduct.name)).build()}"><span th:text="${listProduct.name}"></span></a></td>
 							<td><span></span></td>
 							<td><span></span></td>
-							<td><span th:text="${product.taste}"></span></td>
-							<td><span th:text="${product.weight}"></span></td>
-							<td><span th:text="${product.stock}"></span></td>
+							<td><span th:text="${listProduct.taste}"></span></td>
+							<td><span th:text="${listProduct.weight}"></span></td>
+							<td><span th:text="${listProduct.stock}"></span></td>
 							<td></td>
 						</tr>
 					</tbody>

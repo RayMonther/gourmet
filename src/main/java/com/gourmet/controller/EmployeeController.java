@@ -21,47 +21,47 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.gourmet.models.Client;
+import com.gourmet.models.Employee;
 
 @Controller
 @RequestMapping("/gourmet")
-public class ClientController {
-	
-	@RequestMapping(value = "/novo-cliente", method = RequestMethod.GET)
-	public ModelAndView newClient() {		
+public class EmployeeController {
+	@RequestMapping(value = "/novo-funcionario", method = RequestMethod.GET)
+	public ModelAndView newEmployee() {		
 		
-	    ModelAndView modelAndView = new ModelAndView("form-cliente");
-	    Client client = new Client();
-	    modelAndView.addObject("client", client);
+	    ModelAndView modelAndView = new ModelAndView("form-funcionario");
+	    Employee employee = new Employee();
+	    modelAndView.addObject("employee", employee);
 	    
 	    return modelAndView;
 	}
 	
 	
-	@RequestMapping(value = "/edit-cliente", method = RequestMethod.GET)
-	public ModelAndView showClient(String cpf) {
+	@RequestMapping(value = "/edit-funcionario", method = RequestMethod.GET)
+	public ModelAndView showEmployee(Long id) {
 		
-		ModelAndView modelAndView = new ModelAndView("form-cliente");
+		ModelAndView modelAndView = new ModelAndView("form-funcionario");
 		
-		if (cpf!=null){
+		if (id!=null){
 		    RestTemplate restTemplate = new RestTemplate();
-		    Client client = restTemplate.getForObject("http://localhost:8080/clients/" + cpf, Client.class);
-		    modelAndView.addObject("client", client);
+		    Employee employee = restTemplate.getForObject("http://localhost:8080/employee/" + id, Employee.class);
+		    modelAndView.addObject("employee", employee);
 		}
 	    return modelAndView;
 	}
 	
-	@RequestMapping(value = "/edit-cliente", method = RequestMethod.POST)
-	public ModelAndView formshowClient(Client client) {
+	@RequestMapping(value = "/edit-funcionario", method = RequestMethod.POST)
+	public ModelAndView formshowEmployee(Employee employee) {
 		
-		ModelAndView modelAndView = new ModelAndView("form-cliente");
+		ModelAndView modelAndView = new ModelAndView("form-funcionario");
 		
 		try {
-			String       postUrl       = "http://localhost:8080/clients/";// put in your url
+			String       postUrl       = "http://localhost:8080/employee/";// put in your url
 			Gson         gson          = new Gson();
 			HttpClient   httpClient    = HttpClientBuilder.create().build();
 			HttpPost     post          = new HttpPost(postUrl);
 			StringEntity postingString;
-			postingString = new StringEntity(gson.toJson(client));
+			postingString = new StringEntity(gson.toJson(employee));
 			post.setEntity(postingString);
 			post.setHeader("Content-type", "application/json");
 			try {
@@ -81,35 +81,35 @@ public class ClientController {
 	    return modelAndView;
 	}
 	
-	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
-	public ModelAndView showClients() {		
-		ModelAndView modelAndView = new ModelAndView("lista-cliente");
+	@RequestMapping(value = "/funcionarios", method = RequestMethod.GET)
+	public ModelAndView showEmployees() {		
+		ModelAndView modelAndView = new ModelAndView("funcionario");
 	    
 	    RestTemplate restTemplate = new RestTemplate();
-	    ResponseEntity<List<Client>> rateResponse =
-	            restTemplate.exchange("http://localhost:8080/clients/",
-	                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Client>>() {
+	    ResponseEntity<List<Employee>> rateResponse =
+	            restTemplate.exchange("http://localhost:8080/employee/",
+	                        HttpMethod.GET, null, new ParameterizedTypeReference<List<Employee>>() {
 	                });
-	    List<Client> listClient = rateResponse.getBody();
-	    modelAndView.addObject("listClient", listClient);
+	    List<Employee> employee = rateResponse.getBody();
+	    modelAndView.addObject("employee", employee);
 	    
 	    return modelAndView;
 	}
 	
 	
-	@RequestMapping(value = "/new-cliente", method = RequestMethod.POST)
-	public ModelAndView newClient(Client client) {		
+	@RequestMapping(value = "/new-funcionario", method = RequestMethod.POST)
+	public ModelAndView newEmployee(Employee employee) {		
 		
-		ModelAndView modelAndView = new ModelAndView("form-cliente");
+		ModelAndView modelAndView = new ModelAndView("form-funcionario");
 		
 		
 		try {
-			String       postUrl       = "http://localhost:8080/clients/";// put in your url
+			String       postUrl       = "http://localhost:8080/employee/";// put in your url
 			Gson         gson          = new Gson();
 			HttpClient   httpClient    = HttpClientBuilder.create().build();
 			HttpPost     post          = new HttpPost(postUrl);
 			StringEntity postingString;
-			postingString = new StringEntity(gson.toJson(client));
+			postingString = new StringEntity(gson.toJson(employee));
 			post.setEntity(postingString);
 			post.setHeader("Content-type", "application/json");
 			try {
@@ -129,11 +129,11 @@ public class ClientController {
 	    return modelAndView;
 	}
 	
-	@RequestMapping(value="/new-cliente", method=RequestMethod.GET)
-	public ModelAndView formNewClient() {
-		ModelAndView modelAndView = new ModelAndView("form-cliente");
-		Client client = new Client();
-		modelAndView.addObject("client", client);
+	@RequestMapping(value="/new-funcionario", method=RequestMethod.GET)
+	public ModelAndView formNewEmployee() {
+		ModelAndView modelAndView = new ModelAndView("form-funcionario");
+		Employee employee = new Employee();
+		modelAndView.addObject("employee", employee);
 		
 		return modelAndView;
 	}

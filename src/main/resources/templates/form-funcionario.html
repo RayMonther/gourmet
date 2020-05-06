@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-	<title>Cadastro Cliente</title>
+	<title>Cadastro Funcionario</title>
 	 <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
       
@@ -57,23 +57,15 @@
 		</div>
 		<h1 class="">Cadastro de Usuário</h1>
 		
-		<form class="container" method="post" th:each="client : ${client}">
-			<h3 class="">Dados do Usuário</h3>
+		<form class="container" method="post" th:each="employee : ${employee}">
+			<h3 class="">Dados do Funcionário</h3>
 			<div  class="container" >
-				<input class="form-control" type="hidden" name="id" id="id" th:value="${client.id}">
-				CPF: <input class="form-control" type="text" name="cpf" id="cpf" th:value="${client.cpf}">
-				Nome: <input class="form-control" type="text" name="name" id="name" th:value="${client.name}">
+				<input class="form-control" type="hidden" name="id" id="id" th:value="${employee.id}">
+				CPF: <input class="form-control" type="text" name="cpf" id="cpf" th:value="${employee.cpf}">
+				Nome: <input class="form-control" type="text" name="name" id="name" th:value="${employee.name}">
 			</div>
 			<div  class="container" >
-				Sexo: 
-				<select class="form-control"name="sexo" id="sexo" >
-					<option value="Selecione">Selecione</option>
-					<option value="Feminino">Feminino</option>
-					<option value="Masculino">Masculino</option>
-				</select>
-				Telefone: <input class="form-control" type="text" name="telephone" id="telephone" th:value="${client.telephone}">
-				Endereço: <input class="form-control" type="text" name="address" id="address" th:value="${client.address}">
-				Cidade: <input class="form-control" type="text" name="city" id="city" th:value="${client.city}">
+				Função: <input class="form-control" type="text" name="function" id="function" th:value="${employee.function}">
 			</div>
 			
 			<br>
