@@ -109,7 +109,12 @@ public class UserController {
 	@RequestMapping(value = "/edit-cliente", method = RequestMethod.POST)
 	public String editClientSave(Cliente cliente) {
 		
+		String cpf = cliente.getCpf(); 
+		String x = cpf.replaceAll(Pattern.quote("-"), "");
+		cpf = x.replaceAll(Pattern.quote("."), "");
+		System.out.println(cpf);
 		
+		cliente.setCpf(cpf);
 		
 		String pass = cliente.getPassword();
 		cliente.setPassword(new BCryptPasswordEncoder().encode(pass));

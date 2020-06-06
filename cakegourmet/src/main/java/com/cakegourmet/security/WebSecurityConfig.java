@@ -32,6 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/cakegourmet/home").permitAll()
 		.antMatchers(HttpMethod.GET, "/cakegourmet/cardapio").permitAll()
+		.antMatchers(HttpMethod.GET, "/cakegourmet/novocliente").permitAll()
+		.antMatchers(HttpMethod.POST, "/cakegourmet/novocliente").permitAll()
 		.antMatchers(HttpMethod.POST, "/cakegourmet/cardapio").hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/cakegourmet/novofuncionario").hasRole("ADMIN")
 		.antMatchers(HttpMethod.POST, "/cakegourmet/novofuncionario").hasRole("ADMIN")
@@ -45,8 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.POST, "/cakegourmet/editar-produto").hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/cakegourmet/novo-produto").hasRole("ADMIN")
 		.antMatchers(HttpMethod.POST, "/cakegourmet/novo-produto").hasRole("ADMIN")
-		.antMatchers(HttpMethod.GET, "/cakegourmet/novocliente").hasRole("ADMIN")
-		.antMatchers(HttpMethod.POST, "/cakegourmet/novocliente").hasRole("ADMIN")
+		
 		.antMatchers(HttpMethod.GET, "/cakegourmet/clientes").hasRole("ADMIN")
 		.antMatchers(HttpMethod.GET, "/cakegourmet/edit-cliente").hasRole("ADMIN")
 		.antMatchers(HttpMethod.POST, "/cakegourmet/edit-cliente").hasRole("ADMIN")
